@@ -1,0 +1,396 @@
+/* =========================================
+   ABAYA — CRAFTSMANSHIP
+   Dark editorial section with unified tokens.
+   ========================================= */
+
+.craftsmanship {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(96px, 12vw, 160px) 0 clamp(72px, 10vw, 120px);
+  background: var(--ab-ink, #1d1a17);
+  color: var(--ab-cream, #fbf8f3);
+}
+
+/* Ghosted wordmark */
+.craftsmanship::before {
+  position: absolute;
+  left: calc(clamp(20px, 4vw, 64px) * -0.3);
+  bottom: -0.14em;
+  z-index: 0;
+  color: rgba(200, 177, 145, 0.05);
+  font-family: var(--ab-arabic, sans-serif);
+  font-size: clamp(180px, 22vw, 340px);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  content: "عباية";
+}
+
+.craftsmanship__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 4vw, 64px);
+}
+
+/* Header */
+
+.craftsmanship__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: clamp(48px, 6vw, 72px);
+}
+
+.craftsmanship__eyebrow {
+  color: var(--ab-gold-soft, #c8b191);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.craftsmanship__index {
+  color: rgba(251, 248, 243, 0.45);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Grid */
+
+.craftsmanship__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+/* Visual */
+
+.craftsmanship__visual {
+  position: relative;
+  padding: 0 clamp(24px, 4vw, 56px) clamp(48px, 6vw, 72px) 0;
+}
+
+.craftsmanship__main-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--ab-ink-soft, #3a342e);
+}
+
+.craftsmanship__main-image img,
+.craftsmanship__detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.9s var(--ab-ease, ease);
+}
+
+.craftsmanship__main-image:hover img,
+.craftsmanship__detail-image:hover img {
+  transform: scale(1.05);
+}
+
+.craftsmanship__main-image::after {
+  position: absolute;
+  inset: 60% 0 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.craftsmanship__image-label {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  z-index: 2;
+  color: var(--ab-cream, #fbf8f3);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+.craftsmanship__detail-image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(120px, 34%, 220px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 6px solid var(--ab-ink, #1d1a17);
+  background: var(--ab-gold-soft, #c8b191);
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+}
+
+/* Content */
+
+.craftsmanship__content {
+  max-width: 580px;
+  padding: clamp(16px, 3vw, 32px) 0;
+}
+
+.craftsmanship__overline {
+  display: block;
+  margin-bottom: 24px;
+  color: var(--ab-gold-soft, #c8b191);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.craftsmanship__title {
+  margin: 0;
+  font-family: var(--ab-serif, serif);
+  font-size: clamp(56px, 6vw, 104px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.craftsmanship__title em {
+  color: var(--ab-gold-soft, #c8b191);
+  font-style: italic;
+}
+
+.craftsmanship__intro {
+  max-width: 46ch;
+  margin: 28px 0 0;
+  font-family: var(--ab-serif, serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.35;
+  color: rgba(251, 248, 243, 0.88);
+}
+
+.craftsmanship__description {
+  max-width: 44ch;
+  margin: 20px 0 0;
+  color: rgba(251, 248, 243, 0.62);
+  font-size: 13.5px;
+  line-height: 1.9;
+}
+
+/* Principles */
+
+.craftsmanship__principles {
+  margin: 40px 0 0;
+  border-top: 1px solid rgba(251, 248, 243, 0.16);
+}
+
+.craftsmanship__principle {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(251, 248, 243, 0.16);
+  transition: background-color 0.3s ease;
+}
+
+.craftsmanship__principle:hover {
+  background: rgba(251, 248, 243, 0.04);
+}
+
+.craftsmanship__principle-number {
+  padding-top: 4px;
+  color: var(--ab-gold, #8a6b42);
+  font-family: var(--ab-serif, serif);
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+.craftsmanship__principle-content h3 {
+  margin: 0;
+  font-family: var(--ab-serif, serif);
+  font-size: clamp(24px, 2.4vw, 30px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.craftsmanship__principle-content p {
+  max-width: 38ch;
+  margin: 8px 0 0;
+  color: rgba(251, 248, 243, 0.58);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* CTA pill */
+
+.craftsmanship__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: 36px;
+  padding: 7px 7px 7px clamp(18px, 1.8vw, 24px);
+  border-radius: 999px;
+  background: var(--ab-cream, #fbf8f3);
+  color: var(--ab-ink, #1d1a17);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.4s var(--ab-ease, ease),
+    color 0.4s var(--ab-ease, ease);
+}
+
+.craftsmanship__cta-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(29, 26, 23, 0.1);
+  transition:
+    background-color 0.4s var(--ab-ease, ease),
+    color 0.4s var(--ab-ease, ease),
+    transform 0.45s var(--ab-ease, ease);
+}
+
+.craftsmanship__cta:hover {
+  background: var(--ab-gold, #8a6b42);
+  color: var(--ab-cream, #fbf8f3);
+}
+
+.craftsmanship__cta:hover .craftsmanship__cta-icon {
+  background: var(--ab-cream, #fbf8f3);
+  color: var(--ab-gold, #8a6b42);
+  transform: translate(2px, -2px);
+}
+
+.craftsmanship__cta:focus-visible {
+  outline: 2px solid var(--ab-gold-soft, #c8b191);
+  outline-offset: 4px;
+}
+
+/* Footer */
+
+.craftsmanship__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: 20px;
+  border-top: 1px solid rgba(251, 248, 243, 0.16);
+  color: rgba(251, 248, 243, 0.5);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.craftsmanship__foot p {
+  margin: 0;
+  color: var(--ab-cream, #fbf8f3);
+  font-family: var(--ab-serif, serif);
+  font-size: clamp(18px, 2vw, 26px);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .craftsmanship__grid {
+    gap: clamp(32px, 5vw, 56px);
+  }
+
+  .craftsmanship__visual {
+    padding-right: clamp(16px, 3vw, 32px);
+    padding-bottom: clamp(32px, 5vw, 48px);
+  }
+
+  .craftsmanship__title {
+    font-size: clamp(48px, 6vw, 76px);
+  }
+}
+
+@media (max-width: 768px) {
+  .craftsmanship {
+    padding: clamp(72px, 12vw, 96px) 0 clamp(56px, 10vw, 80px);
+  }
+
+  .craftsmanship__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .craftsmanship__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .craftsmanship__visual {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 32px 40px 0;
+  }
+
+  .craftsmanship__content {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .craftsmanship__title {
+    font-size: clamp(52px, 11vw, 76px);
+  }
+
+  .craftsmanship__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .craftsmanship__foot p {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .craftsmanship__visual {
+    padding: 0 24px 32px 0;
+  }
+
+  .craftsmanship__detail-image {
+    width: 42%;
+    border-width: 4px;
+  }
+
+  .craftsmanship__title {
+    font-size: clamp(46px, 12vw, 62px);
+  }
+
+  .craftsmanship__principle {
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+  }
+
+  .craftsmanship__principle-content h3 {
+    font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .craftsmanship__main-image img,
+  .craftsmanship__detail-image img,
+  .craftsmanship__cta,
+  .craftsmanship__cta-icon {
+    transition: none;
+    transform: none;
+  }
+}

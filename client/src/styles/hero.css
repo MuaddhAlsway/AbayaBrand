@@ -1,0 +1,848 @@
+/* =========================================
+   ABAYA — EDITORIAL HERO
+   Typographic field + framed portrait.
+   Slides crossfade in place; the layout
+   honours each portrait campaign frame.
+========================================= */
+
+.abaya-hero {
+  --hero-pad: clamp(20px, 4vw, 64px);
+  /* Text-safe variants of the shared tokens: the hero sits on a warm
+     gradient and on the campaign image, so small type needs more depth. */
+  --hero-muted: #5b4e3f;
+  --hero-gold: #7c5e38;
+
+  position: relative;
+  z-index: 1;
+  min-height: clamp(600px, 82svh, 840px);
+  overflow: hidden;
+  isolation: isolate;
+  touch-action: pan-y;
+  color: var(--ab-ink, #1d1a17);
+  background:
+    radial-gradient(
+      70% 80% at 0% 100%,
+      rgba(200, 177, 145, 0.28),
+      transparent 62%
+    ),
+    linear-gradient(180deg, var(--ab-cream, #fbf8f3), var(--ab-paper, #f6f1e9));
+}
+
+/* Ghosted Arabic wordmark behind the type */
+.abaya-hero__watermark {
+  position: absolute;
+  bottom: -0.18em;
+  left: calc(var(--hero-pad) * -0.3);
+  z-index: 0;
+  color: rgba(138, 107, 66, 0.06);
+  font-family: var(--ab-arabic, sans-serif);
+  font-size: clamp(160px, 20vw, 300px);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.abaya-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  align-items: stretch;
+  gap: clamp(24px, 4vw, 72px);
+  max-width: 1680px;
+  min-height: inherit;
+  margin: 0 auto;
+  padding: 0 var(--hero-pad);
+}
+
+/* Announced to screen readers only, and only when the player is paused. */
+.abaya-hero__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Copy ---------- */
+
+.abaya-hero__copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 680px;
+  padding: clamp(40px, 4.6vw, 68px) 0;
+}
+
+.abaya-hero__topline {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 18px);
+  margin-bottom: clamp(22px, 3vw, 34px);
+  animation: abaya-hero-rise 0.9s 0.05s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ab-ink-soft, #3a342e);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.abaya-hero__eyebrow::before {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ab-gold, #8a6b42);
+  box-shadow: 0 0 0 3px rgba(138, 107, 66, 0.15);
+  content: "";
+}
+
+.abaya-hero__rule {
+  flex: 0 0 clamp(26px, 4vw, 56px);
+  height: 1px;
+  background: var(--ab-line, rgba(29, 26, 23, 0.12));
+}
+
+.abaya-hero__season {
+  color: var(--hero-gold, #7c5e38);
+  font-family: var(--ab-serif, serif);
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.abaya-hero__title {
+  margin: 0;
+  font-family: var(--ab-serif, serif);
+  font-size: clamp(64px, 7.6vw, 120px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.88;
+}
+
+.abaya-hero__title-line {
+  display: block;
+  animation: abaya-hero-line 0.95s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__title-line--accent {
+  margin-top: 0.1em;
+  padding-left: 0.04em;
+  color: var(--hero-gold, #7c5e38);
+  font-size: 0.54em;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  animation-delay: 0.1s;
+}
+
+.abaya-hero__lede {
+  max-width: 38ch;
+  margin: clamp(22px, 2.6vw, 34px) 0 0;
+  color: var(--hero-muted, #625444);
+  font-size: 13.5px;
+  letter-spacing: 0.005em;
+  line-height: 1.95;
+  animation: abaya-hero-rise 1s 0.2s var(--ab-ease, ease) both;
+}
+
+/* ---------- Actions ---------- */
+
+.abaya-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px clamp(18px, 2.4vw, 30px);
+  margin-top: clamp(28px, 3.4vw, 44px);
+  animation: abaya-hero-rise 1s 0.28s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 24px);
+  padding: 7px 7px 7px clamp(20px, 2vw, 26px);
+  border-radius: 999px;
+  background: var(--ab-ink, #1d1a17);
+  color: var(--ab-cream, #fbf8f3);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    background 0.4s var(--ab-ease, ease),
+    color 0.4s var(--ab-ease, ease);
+}
+
+.abaya-hero__cta-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(251, 248, 243, 0.14);
+  transition:
+    background 0.4s var(--ab-ease, ease),
+    color 0.4s var(--ab-ease, ease),
+    transform 0.45s var(--ab-ease, ease);
+}
+
+.abaya-hero__cta:hover {
+  background: var(--ab-gold, #8a6b42);
+}
+
+.abaya-hero__cta:hover .abaya-hero__cta-icon {
+  background: var(--ab-cream, #fbf8f3);
+  color: var(--ab-gold, #8a6b42);
+  transform: translate(2px, -2px);
+}
+
+.abaya-hero__text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(29, 26, 23, 0.22);
+  color: var(--ab-ink-soft, #3a342e);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.abaya-hero__text-link svg {
+  transition: transform 0.35s var(--ab-ease, ease);
+}
+
+.abaya-hero__text-link:hover {
+  border-color: var(--ab-gold, #8a6b42);
+  color: var(--ab-gold, #8a6b42);
+}
+
+.abaya-hero__text-link:hover svg {
+  transform: translateX(3px);
+}
+
+.abaya-hero__cta:focus-visible,
+.abaya-hero__text-link:focus-visible,
+.abaya-hero__scroll:focus-visible {
+  outline: 2px solid var(--ab-gold, #8a6b42);
+  outline-offset: 4px;
+}
+
+/* ---------- Catalogue meta ---------- */
+
+.abaya-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px clamp(20px, 3vw, 44px);
+  margin-top: clamp(28px, 3.6vw, 48px);
+  padding-top: 18px;
+  border-top: 1px solid var(--ab-line, rgba(29, 26, 23, 0.12));
+  animation: abaya-hero-rise 1s 0.36s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  animation: abaya-hero-fade 0.7s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__meta-label {
+  color: var(--hero-muted, #625444);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.abaya-hero__meta-value {
+  font-family: var(--ab-serif, serif);
+  font-size: 17px;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.abaya-hero__scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding-bottom: 2px;
+  color: var(--hero-muted, #625444);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.abaya-hero__scroll svg {
+  animation: abaya-hero-bounce 2.4s ease-in-out infinite;
+}
+
+.abaya-hero__scroll:hover {
+  color: var(--ab-gold, #8a6b42);
+}
+
+/* ---------- Figure ---------- */
+
+.abaya-hero__figure {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  margin: 0 calc(-1 * var(--hero-pad)) 0 0;
+  padding: clamp(16px, 1.8vw, 28px) 0;
+}
+
+.abaya-hero__frame {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: #8d765d;
+  animation: abaya-hero-curtain 1.3s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__frame::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  box-shadow: inset 0 0 0 1px rgba(251, 248, 243, 0.22);
+  content: "";
+  pointer-events: none;
+}
+
+/* Slides sit stacked; only the active one is painted. Absolute
+   positioning keeps the portrait's intrinsic height from stretching
+   the hero — the section height comes from min-height + the copy. */
+.abaya-hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 1.1s var(--ab-ease, ease),
+    visibility 0s linear 1.1s;
+}
+
+.abaya-hero__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 1.1s var(--ab-ease, ease),
+    visibility 0s linear 0s;
+}
+
+.abaya-hero__slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Centred crop: keeps the full look while trimming the empty top
+     and the floor at the bottom of the campaign frame. */
+  object-position: 50% 50%;
+  filter: saturate(0.97) contrast(1.02);
+  transform: scale(1.035);
+  transition: transform 7s linear;
+}
+
+.abaya-hero__slide.is-active img {
+  transform: scale(1);
+}
+
+/* Per-slide wash. Invisible on desktop (type sits beside the frame);
+   it fades in with the mobile full-bleed layout. */
+.abaya-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.abaya-hero__caption {
+  position: absolute;
+  top: clamp(14px, 1.6vw, 24px);
+  left: clamp(14px, 1.6vw, 24px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  background: rgba(251, 248, 243, 0.9);
+  box-shadow: 0 16px 30px -24px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: abaya-hero-fade 0.7s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__caption-index {
+  color: var(--hero-gold, #7c5e38);
+  font-family: var(--ab-serif, serif);
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1;
+}
+
+.abaya-hero__caption-text {
+  color: var(--ab-ink-soft, #3a342e);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.abaya-hero__counter {
+  position: absolute;
+  right: clamp(14px, 1.8vw, 24px);
+  bottom: clamp(14px, 1.8vw, 24px);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  background: rgba(29, 26, 23, 0.42);
+  color: var(--ab-cream, #fbf8f3);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: abaya-hero-fade 0.7s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__counter::before {
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0.5;
+}
+
+/* ---------- Pager ---------- */
+
+.abaya-hero__pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: clamp(14px, 1.8vw, 24px);
+  animation: abaya-hero-fade 0.8s 0.48s var(--ab-ease, ease) both;
+}
+
+.abaya-hero__pager-tabs {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.abaya-hero__pager-tab {
+  position: relative;
+  padding: 8px 2px 9px;
+  border: 0;
+  background: none;
+  color: var(--hero-muted, #625444);
+  font-family: var(--ab-serif, serif);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.abaya-hero__pager-tab::after {
+  position: absolute;
+  bottom: 3px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0.28;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ab-ease, ease);
+}
+
+.abaya-hero__pager-tab:hover,
+.abaya-hero__pager-tab.is-active {
+  color: var(--ab-ink, #1d1a17);
+}
+
+.abaya-hero__pager-tab:hover::after {
+  transform: scaleX(1);
+}
+
+/* Autoplay timer: fills the active tab's rule over one full cycle, and
+   sits full when the slideshow is paused. */
+.abaya-hero__tab-progress {
+  position: absolute;
+  bottom: 3px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.abaya-hero__pager:not(.is-playing) .abaya-hero__tab-progress {
+  transform: scaleX(1);
+}
+
+.abaya-hero__pager.is-playing .abaya-hero__tab-progress {
+  animation: abaya-hero-progress 7s linear forwards;
+}
+
+.abaya-hero__pager-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.abaya-hero__pager-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--ab-line, rgba(29, 26, 23, 0.12));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ab-ink, #1d1a17);
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.abaya-hero__pager-btn:hover {
+  border-color: var(--ab-ink, #1d1a17);
+  background: var(--ab-ink, #1d1a17);
+  color: var(--ab-cream, #fbf8f3);
+}
+
+.abaya-hero__pager-btn:active {
+  transform: scale(0.94);
+}
+
+.abaya-hero__pager-btn--play {
+  border-color: rgba(29, 26, 23, 0.24);
+}
+
+.abaya-hero__pager-btn:focus-visible,
+.abaya-hero__pager-tab:focus-visible {
+  outline: 2px solid var(--ab-gold, #8a6b42);
+  outline-offset: 3px;
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes abaya-hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes abaya-hero-line {
+  from {
+    opacity: 0;
+    transform: translateY(0.22em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes abaya-hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes abaya-hero-curtain {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes abaya-hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes abaya-hero-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .abaya-hero {
+    --hero-pad: clamp(20px, 3vw, 32px);
+    min-height: clamp(580px, 80svh, 780px);
+  }
+
+  .abaya-hero__title {
+    font-size: clamp(56px, 7.4vw, 92px);
+  }
+
+  .abaya-hero__lede {
+    max-width: 34ch;
+  }
+}
+
+/* Portrait becomes the canvas; copy sits in the quiet upper space. */
+@media (max-width: 900px) {
+  .abaya-hero {
+    --hero-pad: clamp(18px, 5vw, 28px);
+    min-height: max(620px, 86svh);
+    background: #a58d72;
+  }
+
+  .abaya-hero__watermark {
+    display: none;
+  }
+
+  .abaya-hero__inner {
+    display: block;
+    min-height: inherit;
+    padding: 0;
+  }
+
+  .abaya-hero__copy {
+    max-width: none;
+    padding: clamp(30px, 7vw, 56px) var(--hero-pad)
+      clamp(40px, 8vw, 64px);
+    justify-content: flex-start;
+  }
+
+  .abaya-hero__figure {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .abaya-hero__frame {
+    position: absolute;
+    inset: 0;
+    animation: none;
+  }
+
+  .abaya-hero__frame::after {
+    box-shadow: none;
+  }
+
+  /* The wash travels with its own image, so contrast holds while the
+     slides crossfade instead of snapping with the copy. */
+  .abaya-hero__scrim {
+    opacity: 1;
+  }
+
+  .abaya-hero__scrim--light {
+    background: linear-gradient(
+      180deg,
+      rgba(246, 241, 233, 0.96) 0%,
+      rgba(246, 241, 233, 0.9) 32%,
+      rgba(246, 241, 233, 0.56) 50%,
+      rgba(246, 241, 233, 0) 72%
+    );
+  }
+
+  .abaya-hero__scrim--warm {
+    background: linear-gradient(
+      180deg,
+      rgba(249, 244, 236, 0.97) 0%,
+      rgba(245, 238, 227, 0.92) 30%,
+      rgba(238, 227, 210, 0.62) 50%,
+      rgba(231, 216, 196, 0) 74%
+    );
+  }
+
+  .abaya-hero__scrim--dark {
+    background: linear-gradient(
+      180deg,
+      rgba(252, 249, 244, 0.985) 0%,
+      rgba(250, 246, 239, 0.965) 30%,
+      rgba(247, 241, 232, 0.82) 48%,
+      rgba(243, 236, 226, 0.34) 64%,
+      rgba(241, 233, 222, 0) 80%
+    );
+  }
+
+  .abaya-hero__slide img {
+    object-position: 50% 60%;
+  }
+
+  .abaya-hero__caption,
+  .abaya-hero__counter {
+    display: none;
+  }
+
+  .abaya-hero__title {
+    font-size: clamp(52px, 9.6vw, 88px);
+  }
+
+  .abaya-hero__lede {
+    max-width: 40ch;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .abaya-hero__meta {
+    display: none;
+  }
+
+  .abaya-hero__scroll {
+    margin-left: 0;
+  }
+
+  .abaya-hero__text-link {
+    color: var(--ab-ink, #1d1a17);
+  }
+
+  .abaya-hero__pager {
+    align-self: flex-start;
+    gap: 14px;
+    width: fit-content;
+    margin-top: clamp(24px, 5.4vw, 34px);
+    padding: 5px 6px 5px 12px;
+    border: 1px solid rgba(251, 248, 243, 0.5);
+    border-radius: 999px;
+    background: rgba(251, 248, 243, 0.76);
+    box-shadow: 0 18px 34px -30px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .abaya-hero__pager-tab {
+    padding: 9px 3px 10px;
+    color: var(--ab-ink-soft, #3a342e);
+    font-size: 13px;
+  }
+
+  .abaya-hero__pager-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 520px) {
+  .abaya-hero__topline {
+    gap: 10px;
+  }
+
+  .abaya-hero__rule {
+    display: none;
+  }
+
+  .abaya-hero__title {
+    font-size: clamp(48px, 13.4vw, 68px);
+  }
+
+  .abaya-hero__cta {
+    gap: 16px;
+    padding-left: 20px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+
+  .abaya-hero__cta-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .abaya-hero__text-link {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abaya-hero__topline,
+  .abaya-hero__title,
+  .abaya-hero__title-line,
+  .abaya-hero__lede,
+  .abaya-hero__actions,
+  .abaya-hero__meta,
+  .abaya-hero__meta-item,
+  .abaya-hero__pager,
+  .abaya-hero__caption,
+  .abaya-hero__counter,
+  .abaya-hero__frame {
+    animation: none;
+  }
+
+  .abaya-hero__scroll svg {
+    animation: none;
+  }
+
+  .abaya-hero__slide,
+  .abaya-hero__slide.is-active {
+    transition: none;
+  }
+
+  .abaya-hero__slide img,
+  .abaya-hero__slide.is-active img {
+    transform: none;
+    transition: none;
+  }
+
+  .abaya-hero__cta,
+  .abaya-hero__cta-icon,
+  .abaya-hero__text-link,
+  .abaya-hero__pager-btn,
+  .abaya-hero__pager-tab,
+  .abaya-hero__pager-tab::after {
+    transition: none;
+  }
+}

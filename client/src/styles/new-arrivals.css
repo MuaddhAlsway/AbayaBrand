@@ -1,0 +1,216 @@
+/* =========================================
+   ABAYA — NEW ARRIVALS
+   Horizontal editorial rail of product cards.
+   ========================================= */
+
+.new-arrivals {
+  padding: clamp(96px, 12vw, 160px) 0;
+  background: var(--ab-paper, #f6f1e9);
+  color: var(--ab-ink, #1d1a17);
+}
+
+.new-arrivals__inner {
+  max-width: 1680px;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 4vw, 64px);
+}
+
+.new-arrivals__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: end;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.new-arrivals__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+  color: var(--ab-ink-soft, #3a342e);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.new-arrivals__eyebrow::before {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ab-gold, #8a6b42);
+  box-shadow: 0 0 0 3px rgba(138, 107, 66, 0.15);
+  content: "";
+}
+
+.new-arrivals__title {
+  margin: 0;
+  font-family: var(--ab-serif, serif);
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.new-arrivals__title em {
+  color: var(--ab-gold, #8a6b42);
+  font-style: italic;
+}
+
+.new-arrivals__aside {
+  display: grid;
+  gap: 24px;
+  align-content: end;
+}
+
+.new-arrivals__lede {
+  max-width: 42ch;
+  margin: 0;
+  color: var(--ab-muted, #77685a);
+  font-size: 13.5px;
+  line-height: 1.9;
+}
+
+.new-arrivals__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 24px);
+  width: fit-content;
+  padding: 7px 7px 7px clamp(18px, 1.8vw, 24px);
+  border-radius: 999px;
+  background: var(--ab-ink, #1d1a17);
+  color: var(--ab-cream, #fbf8f3);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.4s var(--ab-ease, ease),
+    color 0.4s var(--ab-ease, ease);
+}
+
+.new-arrivals__cta-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(251, 248, 243, 0.14);
+  transition:
+    background-color 0.4s var(--ab-ease, ease),
+    color 0.4s var(--ab-ease, ease),
+    transform 0.45s var(--ab-ease, ease);
+}
+
+.new-arrivals__cta:hover {
+  background: var(--ab-gold, #8a6b42);
+}
+
+.new-arrivals__cta:hover .new-arrivals__cta-icon {
+  background: var(--ab-cream, #fbf8f3);
+  color: var(--ab-gold, #8a6b42);
+  transform: translate(2px, -2px);
+}
+
+.new-arrivals__cta:focus-visible {
+  outline: 2px solid var(--ab-gold, #8a6b42);
+  outline-offset: 4px;
+}
+
+/* Rail */
+
+.new-arrivals__rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ab-gold, #8a6b42) transparent;
+}
+
+.new-arrivals__rail::-webkit-scrollbar {
+  height: 6px;
+}
+
+.new-arrivals__rail::-webkit-scrollbar-thumb {
+  background: var(--ab-gold, #8a6b42);
+  border-radius: 999px;
+}
+
+.new-arrivals__item {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.new-arrivals__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: clamp(28px, 4vw, 40px);
+  padding-top: 18px;
+  border-top: 1px solid var(--ab-line, rgba(29, 26, 23, 0.12));
+  color: var(--ab-muted, #77685a);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.new-arrivals__foot-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ab-ink, #1d1a17);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.new-arrivals__foot-link:hover {
+  color: var(--ab-gold, #8a6b42);
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .new-arrivals__header {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .new-arrivals__rail {
+    grid-auto-columns: minmax(240px, 72vw);
+  }
+}
+
+@media (max-width: 768px) {
+  .new-arrivals {
+    padding: clamp(72px, 12vw, 96px) 0;
+  }
+
+  .new-arrivals__rail {
+    grid-auto-columns: minmax(220px, 80vw);
+  }
+
+  .new-arrivals__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .new-arrivals__cta,
+  .new-arrivals__cta-icon {
+    transition: none;
+    transform: none;
+  }
+}

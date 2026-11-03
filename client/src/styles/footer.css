@@ -1,0 +1,468 @@
+
+/* =========================================
+   ABAYA — FOOTER
+========================================= */
+
+.footer {
+  width: 100%;
+  overflow: hidden;
+  background: #24211e;
+  color: #fbf8f3;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+}
+
+.footer__container {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(251, 248, 243, 0.15);
+}
+
+.footer__top > span {
+  color: #c4ac94;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+
+.footer__back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border: none;
+  background: transparent;
+  color: #fbf8f3;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer__back-to-top:hover {
+  color: #c4ac94;
+}
+
+.footer__back-to-top svg {
+  transition: transform 0.3s ease;
+}
+
+.footer__back-to-top:hover svg {
+  transform: translateY(-4px);
+}
+
+/* =========================================
+   MAIN GRID
+========================================= */
+
+.footer__main {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 2fr)
+    repeat(3, minmax(0, 1fr));
+  gap: clamp(30px, 5vw, 90px);
+  padding: 100px 0 105px;
+}
+
+/* =========================================
+   BRAND
+========================================= */
+
+.footer__brand {
+  max-width: 340px;
+}
+
+.footer__brand-logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer__brand-english {
+  font-family: var(
+    --font-heading,
+    "Cormorant Garamond",
+    serif
+  );
+  font-size: 65px;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.055em;
+}
+
+.footer__brand-arabic {
+  margin-top: 15px;
+  color: #c4ac94;
+  font-family: var(
+    --font-arabic,
+    "Noto Naskh Arabic",
+    serif
+  );
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.footer__brand-description {
+  max-width: 280px;
+  margin: 32px 0 22px;
+  color: #b7aaa0;
+  font-size: 13px;
+  line-height: 2;
+}
+
+.footer__location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #c4ac94;
+  font-size: 12px;
+}
+
+.footer__social {
+  margin-top: 45px;
+}
+
+.footer__social > span {
+  color: #c4ac94;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+
+.footer__social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.footer__social-placeholder {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border: 1px solid rgba(251, 248, 243, 0.2);
+  border-radius: 50%;
+  color: #fbf8f3;
+  opacity: 0.65;
+}
+
+/* =========================================
+   NAVIGATION COLUMNS
+========================================= */
+
+.footer__column h3 {
+  margin: 0 0 30px;
+  color: #c4ac94;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.footer__column ul {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__column li {
+  margin: 0;
+}
+
+.footer__column a {
+  display: inline-block;
+  color: #b7aaa0;
+  font-size: 12px;
+  line-height: 1.6;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.footer__column a:hover {
+  color: #fbf8f3;
+  transform: translateX(4px);
+}
+
+/* =========================================
+   CONTACT STRIP
+========================================= */
+
+.footer__contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(251, 248, 243, 0.15);
+  border-bottom: 1px solid rgba(251, 248, 243, 0.15);
+}
+
+.footer__contact-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #c4ac94;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+.footer__contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  font-family: var(
+    --font-heading,
+    "Cormorant Garamond",
+    serif
+  );
+  font-size: clamp(35px, 4vw, 60px);
+  transition: color 0.3s ease;
+}
+
+.footer__contact-link:hover {
+  color: #c4ac94;
+}
+
+.footer__contact-link svg {
+  transition: transform 0.3s ease;
+}
+
+.footer__contact-link:hover svg {
+  transform: translate(5px, -5px);
+}
+
+/* =========================================
+   OVERSIZED WORDMARK
+========================================= */
+
+.footer__wordmark {
+  width: 100%;
+  margin: 45px 0 25px;
+  overflow: hidden;
+  color: #fbf8f3;
+  font-family: var(
+    --font-heading,
+    "Cormorant Garamond",
+    serif
+  );
+  font-size: clamp(100px, 21vw, 350px);
+  font-weight: 400;
+  line-height: 0.75;
+  letter-spacing: -0.065em;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0.12;
+  user-select: none;
+}
+
+/* =========================================
+   BOTTOM BAR
+========================================= */
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 35px 0;
+  border-top: 1px solid rgba(251, 248, 243, 0.15);
+}
+
+.footer__bottom > span {
+  color: #a99d93;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.footer__bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.footer__bottom-links a {
+  color: #a99d93;
+  font-size: 10px;
+  transition: color 0.3s ease;
+}
+
+.footer__bottom-links a:hover {
+  color: #fbf8f3;
+}
+
+.footer__dot {
+  margin: 0 7px;
+  color: #c4ac94;
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+.footer a:focus-visible,
+.footer button:focus-visible {
+  outline: 2px solid #c4ac94;
+  outline-offset: 5px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+  .footer__container {
+    padding: 0 4%;
+  }
+
+  .footer__main {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 55px 30px;
+    padding: 80px 0;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+    max-width: 500px;
+  }
+
+  .footer__wordmark {
+    font-size: 22vw;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .footer__container {
+    padding: 0 20px;
+  }
+
+  .footer__top {
+    padding: 25px 0;
+  }
+
+  .footer__top > span {
+    font-size: 9px;
+  }
+
+  .footer__main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 55px 25px;
+    padding: 70px 0;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer__brand-english {
+    font-size: 60px;
+  }
+
+  .footer__contact {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer__contact-link {
+    font-size: 45px;
+  }
+
+  .footer__wordmark {
+    margin: 40px 0 25px;
+    font-size: 21vw;
+  }
+
+  .footer__bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__container {
+    padding: 0 16px;
+  }
+
+  .footer__top > span {
+    max-width: 170px;
+    font-size: 8px;
+    line-height: 1.7;
+  }
+
+  .footer__back-to-top {
+    font-size: 9px;
+  }
+
+  .footer__main {
+    gap: 45px 20px;
+    padding: 60px 0;
+  }
+
+  .footer__brand-english {
+    font-size: 55px;
+  }
+
+  .footer__brand-description {
+    font-size: 12px;
+  }
+
+  .footer__column h3 {
+    font-size: 9px;
+  }
+
+  .footer__column a {
+    font-size: 11px;
+  }
+
+  .footer__contact-link {
+    font-size: 40px;
+  }
+
+  .footer__wordmark {
+    font-size: 21vw;
+  }
+
+  .footer__bottom > span {
+    font-size: 9px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer a,
+  .footer button,
+  .footer svg {
+    transition: none;
+  }
+}

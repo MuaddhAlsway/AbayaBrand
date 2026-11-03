@@ -1,0 +1,162 @@
+/* =========================================
+   ABAYA — ANNOUNCEMENT RAIL
+   A slow editorial ticker instead of a static strip.
+========================================= */
+
+.ab-announce {
+  position: relative;
+  z-index: 121;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 54px;
+  overflow: hidden;
+  color: var(--ab-cream, #fbf8f3);
+  background:
+    radial-gradient(
+      120% 240% at 50% -60%,
+      rgba(200, 177, 145, 0.22),
+      transparent 60%
+    ),
+    linear-gradient(90deg, #171412 0%, #24201b 50%, #171412 100%);
+}
+
+/* Gold hairline that catches the light at the base of the rail */
+.ab-announce::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 177, 145, 0.75),
+    transparent
+  );
+  content: "";
+}
+
+.ab-announce__marquee {
+  flex: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+}
+
+.ab-announce__track {
+  display: flex;
+  width: max-content;
+  animation: ab-announce-marquee 44s linear infinite;
+  will-change: transform;
+}
+
+.ab-announce:hover .ab-announce__track,
+.ab-announce:focus-within .ab-announce__track {
+  animation-play-state: paused;
+}
+
+.ab-announce__group {
+  display: flex;
+  align-items: center;
+}
+
+.ab-announce__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding-right: 24px;
+  font-family: var(--ab-sans, "DM Sans", sans-serif);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.92;
+}
+
+.ab-announce__diamond {
+  width: 4px;
+  height: 4px;
+  background: var(--ab-gold-soft, #c8b191);
+  transform: rotate(45deg);
+}
+
+.ab-announce__close {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid rgba(251, 248, 243, 0.22);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.45s var(--ab-ease, ease);
+}
+
+.ab-announce__close:hover {
+  border-color: rgba(251, 248, 243, 0.55);
+  background: rgba(251, 248, 243, 0.12);
+  transform: translateY(-50%) rotate(90deg);
+}
+
+@keyframes ab-announce-marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .ab-announce {
+    min-height: 36px;
+    padding: 0 44px 0 42px;
+  }
+
+  .ab-announce__item {
+    gap: 18px;
+    padding-right: 18px;
+    font-size: 8.5px;
+    letter-spacing: 0.14em;
+  }
+
+  .ab-announce__track {
+    animation-duration: 30s;
+  }
+
+  .ab-announce__close {
+    right: 11px;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-announce__track {
+    animation: none;
+  }
+
+  .ab-announce__close {
+    transition: none;
+  }
+}
