@@ -3,8 +3,14 @@ import { clerkClient } from "@clerk/express";
 import { requireAuth, getAuthUserId } from "../../middleware/authenticate";
 import { asyncHandler } from "../../utils/asyncHandler";
 import { Customer } from "./customer.model";
+import { requireAdmin } from "../../middleware/authenticate";
 
 const router = Router();
+
+router.get("/", requireAdmin, asyncHandler(async (_req, res) => {
+  const customers = await Customer.find().sort({ createdAt: -1 }).select("email firstName lastName clerkUserId createdAt").lean();
+  res.json({ data: customers });
+}));
 
 router.get(
   "/me",
