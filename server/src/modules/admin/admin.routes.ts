@@ -2,6 +2,7 @@ import { Router } from "express";
 import { asyncHandler } from "../../utils/asyncHandler";
 import { requireAdmin } from "../../middleware/authenticate";
 import { Product } from "../products/product.model";
+import { Media } from "../media/media.model";
 
 const router = Router();
 
@@ -20,6 +21,12 @@ router.get("/dashboard", requireAdmin, asyncHandler(async (_req, res) => {
 router.get("/products", requireAdmin, asyncHandler(async (_req, res) => {
   const products = await Product.find().sort({ createdAt: -1 }).lean();
   res.json({ data: products });
+}));
+
+router.post("/media/sync", requireAdmin, asyncHandler(async (_req, res) => {
+  const products = await Product.find({}, { image: 1 }).lean();
+  for (const product of products) if (product.image) await Media.updateOne({ url: product.image }, { $setOnInsert: { name: product.image.split("/").pop() ?? "product-image", url: product.image, mimeType: "image/*", size: 0 } }, { upsert: true });
+  res.json({ data: await Media.find().sort({ createdAt: -1 }).lean() });
 }));
 
 router.post("/products", requireAdmin, asyncHandler(async (req, res) => {
