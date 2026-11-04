@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import type { Product } from "../../types/product";
 import "../../styles/product-gallery.css";
+import { assetUrl } from "../../utils/assetUrl";
 
 type ProductGalleryProps = {
   product: Product;
@@ -71,7 +72,7 @@ export default function ProductGallery({
           aria-label={`Open fullscreen view of ${product.name}`}
         >
           <img
-            src={gallery[safeIndex]}
+            src={assetUrl(gallery[safeIndex])}
             alt={`${product.name} — view ${safeIndex + 1} of ${gallery.length}`}
             className="product-gallery__main-image"
             loading="eager"
@@ -97,7 +98,7 @@ export default function ProductGallery({
               aria-label={`Show image ${index + 1} of ${gallery.length}`}
               aria-pressed={index === safeIndex}
             >
-              <img src={src} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              <img src={assetUrl(src)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </button>
           ))}
         </div>
@@ -141,7 +142,7 @@ export default function ProductGallery({
             </>
           )}
           <img
-            src={gallery[safeIndex]}
+            src={assetUrl(gallery[safeIndex])}
             alt={`${product.name} — view ${safeIndex + 1} of ${gallery.length}`}
             className="product-gallery__viewer-image"
             loading="lazy"
