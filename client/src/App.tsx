@@ -3,26 +3,41 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import AnnouncementBar from "./components/layout/AnnouncementBar";
 import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
 import Home from "./pages/Home";
-
-// Temporary placeholder for unfinished pages.
-function PagePlaceholder({ title }: { title: string }) {
-  return (
-    <main style={{ minHeight: "65vh", padding: "100px 5%" }}>
-      <h1>{title}</h1>
-      <p>Coming soon — ABAYA Collection</p>
-    </main>
-  );
-}
+import Shop from "./pages/Shop";
+import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import AccountLayout from "./components/account/AccountLayout";
+import AccountDashboard from "./pages/account/AccountDashboard";
+import Profile from "./pages/account/Profile";
+import Addresses from "./pages/account/Addresses";
+import Orders from "./pages/account/Orders";
+import OrderDetails from "./pages/account/OrderDetails";
+import AccountWishlist from "./pages/account/Wishlist";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import CartDrawer from "./components/cart/CartDrawer";
+import ScrollToTop from "./components/layout/ScrollToTop";
+import Collections from "./pages/Collections";
+import NewArrivals from "./pages/NewArrivals";
+import ProductDetails from "./pages/ProductDetails";
+import OurStory from "./pages/OurStory";
+import Wishlist from "./pages/Wishlist";
+import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
 
 function StoreLayout() {
   return (
     <>
+      <ScrollToTop />
       <AnnouncementBar />
       <Navbar />
       <Outlet />
-      {/* Footer will be added next */}
+      <Footer />
+      <CartDrawer />
     </>
   );
 }
@@ -33,16 +48,33 @@ export default function App() {
       <Routes>
         <Route element={<StoreLayout />}>
           <Route index element={<Home />} />
-          <Route path="shop" element={<PagePlaceholder title="Shop All" />} />
-          <Route path="new-arrivals" element={<PagePlaceholder title="New Arrivals" />} />
-          <Route path="collections" element={<PagePlaceholder title="Collections" />} />
-          <Route path="product/:slug" element={<PagePlaceholder title="Product Details" />} />
-          <Route path="our-story" element={<PagePlaceholder title="Our Story" />} />
-          <Route path="wishlist" element={<PagePlaceholder title="Wishlist" />} />
-          <Route path="cart" element={<PagePlaceholder title="Shopping Bag" />} />
-          <Route path="checkout" element={<PagePlaceholder title="Checkout" />} />
-          <Route path="account" element={<PagePlaceholder title="My Account" />} />
-          <Route path="*" element={<PagePlaceholder title="Page Not Found" />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="order-confirmation/:orderId" element={<OrderConfirmation />} />
+          <Route
+            path="account"
+            element={
+              <ProtectedRoute>
+                <AccountLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<AccountDashboard />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="addresses" element={<Addresses />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="orders/:orderId" element={<OrderDetails />} />
+            <Route path="wishlist" element={<AccountWishlist />} />
+          </Route>
+          <Route path="new-arrivals" element={<NewArrivals />} />
+          <Route path="collections" element={<Collections />} />
+          <Route path="product/:slug" element={<ProductDetails />} />
+          <Route path="our-story" element={<OurStory />} />
+          <Route path="wishlist" element={<Wishlist />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

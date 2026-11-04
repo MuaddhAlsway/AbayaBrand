@@ -1,9 +1,13 @@
 
+export type ProductCategory = "Everyday" | "Signature" | "Occasion" | "Classic";
+
+export type ProductCollection = "everyday" | "signature" | "occasion" | "classic";
+
 export type Product = {
   id: string;
   slug: string;
   name: string;
-  category: string;
+  category: ProductCategory;
   price: number;
   image: string;
   images?: string[];

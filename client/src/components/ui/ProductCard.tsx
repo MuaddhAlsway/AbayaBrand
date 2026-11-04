@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Heart } from "lucide-react";
 import type { Product } from "../../types/product";
+import { useWishlist } from "../../context/WishlistContext";
 import "../../styles/product-card.css";
 
 type ProductCardProps = {
@@ -10,7 +11,8 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ product, index }: ProductCardProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { isWishlisted, toggle } = useWishlist();
+  const isFavorite = isWishlisted(product.id);
   const gallery = product.images && product.images.length > 0
     ? product.images
     : [product.image];
@@ -104,7 +106,15 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <button
           type="button"
           className={`ab-product__favorite ${isFavorite ? "is-active" : ""}`}
-          onClick={() => setIsFavorite((value) => !value)}
+          onClick={() =>
+            toggle({
+              productId: product.id,
+              slug: product.slug,
+              name: product.name,
+              image: product.image,
+              price: product.price,
+            })
+          }
           aria-label={
             isFavorite
               ? `Remove ${product.name} from wishlist`

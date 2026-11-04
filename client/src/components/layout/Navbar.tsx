@@ -12,6 +12,10 @@ import {
 } from "lucide-react";
 
 import "../../styles/navbar.css";
+import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
+import { hasClerk } from "../../config/clerk";
+import { useClerk, useUser } from "@clerk/clerk-react";
 
 const links = [
   { label: "Home", to: "/" },
@@ -34,6 +38,40 @@ const popularSearches = [
   "Silk hijab",
 ];
 
+function AccountLink() {
+  const { isSignedIn } = useUser();
+  const { signOut } = useClerk();
+  const navigate = useNavigate();
+
+  if (isSignedIn) {
+    return (
+      <button
+        className="ab-icon ab-actions__account"
+        type="button"
+        onClick={async () => {
+          await signOut();
+          navigate("/");
+        }}
+        aria-label="Sign out"
+        data-label="Sign out"
+      >
+        <UserRound size={19} strokeWidth={1.4} />
+      </button>
+    );
+  }
+
+  return (
+    <Link
+      className="ab-icon ab-actions__account"
+      to={isSignedIn ? "/account" : "/sign-in"}
+      aria-label="My account"
+      data-label="Account"
+    >
+      <UserRound size={19} strokeWidth={1.4} />
+    </Link>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -51,8 +89,9 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   // Replace with CartContext and WishlistContext later.
-  const cartCount = 0;
-  const wishlistCount = 0;
+  const { itemCount: cartCount, openCart } = useCart();
+  const { items: wishlistItems } = useWishlist();
+  const wishlistCount = wishlistItems.length;
 
   useEffect(() => {
     overlayOpen.current = menuOpen || searchOpen || collectionsOpen;
@@ -149,7 +188,19 @@ export default function Navbar() {
     const trimmed = value.trim();
     if (!trimmed) return;
 
-    navigate(`/shop?search=${encodeURIComponent(trimmed)}`);
+    const lower = trimmed.toLowerCase();
+    let collection: string | null = null;
+    if (lower.includes("everyday")) collection = "everyday";
+    else if (lower.includes("occasion")) collection = "occasion";
+    else if (lower.includes("signature")) collection = "signature";
+    else if (lower.includes("classic")) collection = "classic";
+    else if (lower.includes("limited")) collection = "limited";
+
+    if (collection) {
+      navigate(`/shop?collection=${collection}`);
+    } else {
+      navigate(`/shop?search=${encodeURIComponent(trimmed)}`);
+    }
     setSearchOpen(false);
     setQuery("");
   };
@@ -371,14 +422,18 @@ export default function Navbar() {
               <Search size={19} strokeWidth={1.4} />
             </button>
 
-            <Link
-              className="ab-icon ab-actions__account"
-              to="/account"
-              aria-label="My account"
-              data-label="Account"
-            >
-              <UserRound size={19} strokeWidth={1.4} />
-            </Link>
+            {hasClerk ? (
+              <AccountLink />
+            ) : (
+              <Link
+                className="ab-icon ab-actions__account"
+                to="/sign-in"
+                aria-label="My account"
+                data-label="Account"
+              >
+                <UserRound size={19} strokeWidth={1.4} />
+              </Link>
+            )}
 
             <Link
               className="ab-icon ab-actions__wishlist"
@@ -392,15 +447,16 @@ export default function Navbar() {
               )}
             </Link>
 
-            <Link
+            <button
+              type="button"
               className="ab-bag"
-              to="/cart"
+              onClick={openCart}
               aria-label={`Shopping bag, ${cartCount} items`}
             >
               <ShoppingBag size={18} strokeWidth={1.4} />
               <span className="ab-bag__label">Bag</span>
               <span className="ab-bag__count">{cartCount}</span>
-            </Link>
+            </button>
 
             <span className="ab-actions__divider" aria-hidden="true" />
 

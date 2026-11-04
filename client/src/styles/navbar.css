@@ -932,6 +932,21 @@
   padding: 18px 26px 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ab-drawer__body::-webkit-scrollbar {
+  display: none;
+}
+
+.ab-search {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ab-search::-webkit-scrollbar {
+  display: none;
 }
 
 .ab-drawer__links {

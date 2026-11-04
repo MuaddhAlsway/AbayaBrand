@@ -1,0 +1,138 @@
+/* =========================================
+   ABAYA — AUTH PAGES
+   ========================================= */
+
+.auth {
+  width: 100%;
+  min-height: 80vh;
+  background: #fbf8f3;
+  color: #24211e;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+}
+
+.auth__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+.auth__visual {
+  position: relative;
+  overflow: hidden;
+  background: #e6d7c5;
+}
+
+.auth__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.auth__visual-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(24, 20, 17, 0.5), transparent 60%);
+  color: #fbf8f3;
+}
+
+.auth__brand {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.auth__brand-arabic {
+  font-size: 20px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+  gap: 16px;
+}
+
+.auth__eyebrow {
+  color: #947c69;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+.auth__title {
+  margin: 0;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.auth__subtitle {
+  margin: 0 0 8px;
+  color: #75695f;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.auth__switch {
+  margin-top: 16px;
+  color: #75695f;
+  font-size: 12px;
+}
+
+.auth__switch a {
+  color: #24211e;
+  border-bottom: 1px solid #24211e;
+}
+
+.auth__note {
+  color: #947c69;
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 16px;
+  border: 1px dashed rgba(36, 33, 30, 0.2);
+}
+
+/* Clerk component theming */
+.auth .cl-rootBox,
+.auth .cl-card {
+  box-shadow: none;
+  border: 1px solid rgba(36, 33, 30, 0.12);
+  background: #fbf8f3;
+  border-radius: 0;
+}
+
+.auth .cl-formButtonPrimary {
+  background: #24211e;
+  color: #fbf8f3;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+}
+
+.auth .cl-formButtonPrimary:hover {
+  background: #183e34;
+}
+
+@media (max-width: 768px) {
+  .auth__container {
+    grid-template-columns: 1fr;
+  }
+
+  .auth__visual {
+    min-height: 200px;
+  }
+
+  .auth__form {
+    padding: 40px 24px;
+  }
+}

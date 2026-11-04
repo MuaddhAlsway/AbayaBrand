@@ -1,0 +1,62 @@
+/* =========================================
+   ABAYA — RELATED PRODUCTS
+   ========================================= */
+
+.related-products {
+  margin-top: 80px;
+  padding: 60px 0 80px;
+  background: #fbf8f3;
+  border-top: 1px solid rgba(36, 33, 30, 0.1);
+}
+
+.related-products__inner {
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.related-products__header {
+  margin-bottom: 32px;
+}
+
+.related-products__title {
+  margin: 0;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.related-products__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.related-products__foot {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.related-products__cta {
+  display: inline-block;
+  padding: 12px 0;
+  border-bottom: 1px solid #24211e;
+  color: #24211e;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .related-products__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .related-products__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}

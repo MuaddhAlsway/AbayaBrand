@@ -1,0 +1,397 @@
+/* =========================================
+   ABAYA — ACCOUNT
+   ========================================= */
+
+.account {
+  width: 100%;
+  background: #fbf8f3;
+  color: #24211e;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+  padding: 40px 0 80px;
+}
+
+.account__container {
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.account__content {
+  min-width: 0;
+}
+
+/* Sidebar */
+.account-sidebar {
+  position: sticky;
+  top: 100px;
+  padding: 24px;
+  border: 1px solid rgba(36, 33, 30, 0.12);
+  background: #f4ede4;
+}
+
+.account-sidebar__eyebrow {
+  color: #947c69;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.account-sidebar__name {
+  margin: 6px 0 20px;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.account-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.account-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  color: #75695f;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.account-sidebar__link:hover {
+  color: #24211e;
+  background: rgba(36, 33, 30, 0.05);
+}
+
+.account-sidebar__link--active {
+  color: #24211e;
+  font-weight: 600;
+  background: rgba(36, 33, 30, 0.08);
+}
+
+.account-sidebar__link--signout {
+  margin-top: 12px;
+  border-top: 1px solid rgba(36, 33, 30, 0.1);
+  padding-top: 16px;
+}
+
+/* Dashboard */
+.account-dashboard__eyebrow {
+  color: #947c69;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.account-dashboard__title {
+  margin: 8px 0 8px;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.account-dashboard__subtitle {
+  margin: 0 0 32px;
+  color: #75695f;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.account-dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.account-dashboard__card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  border: 1px solid rgba(36, 33, 30, 0.12);
+  background: #fbf8f3;
+  color: #24211e;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.account-dashboard__card:hover {
+  border-color: #947c69;
+  transform: translateY(-2px);
+}
+
+.account-dashboard__card h2 {
+  margin: 8px 0 4px;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.account-dashboard__card p {
+  margin: 0;
+  color: #75695f;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.account-dashboard__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid #24211e;
+  color: #24211e;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Profile */
+.account-profile__eyebrow {
+  color: #947c69;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.account-profile__title {
+  margin: 8px 0 24px;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+}
+
+.account-profile__card {
+  border: 1px solid rgba(36, 33, 30, 0.12);
+  background: #f4ede4;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.account-profile__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(36, 33, 30, 0.08);
+}
+
+.account-profile__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #75695f;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-profile__value {
+  color: #24211e;
+  font-size: 13px;
+}
+
+.account-profile__input {
+  padding: 8px 12px;
+  border: 1px solid rgba(36, 33, 30, 0.25);
+  background: #fbf8f3;
+  color: #24211e;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.account-profile__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.account-profile__edit,
+.account-profile__save,
+.account-profile__cancel {
+  padding: 12px 20px;
+  border: 1px solid #24211e;
+  background: #24211e;
+  color: #fbf8f3;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.account-profile__cancel {
+  background: transparent;
+  color: #24211e;
+}
+
+.account-profile__success {
+  color: #183e34;
+  font-size: 12px;
+}
+
+.account-profile__error {
+  color: #9b3a2f;
+  font-size: 12px;
+}
+
+/* Addresses */
+.account-addresses__eyebrow,
+.account-orders__eyebrow,
+.account-wishlist__eyebrow,
+.account-order-details__eyebrow {
+  color: #947c69;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.account-addresses__title,
+.account-orders__title,
+.account-wishlist__title {
+  margin: 8px 0 16px;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+}
+
+.account-addresses__note,
+.account-orders__note,
+.account-order-details__note {
+  color: #75695f;
+  font-size: 12px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.account-addresses__empty,
+.account-orders__empty,
+.account-wishlist__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 40px 20px;
+  color: #75695f;
+}
+
+.account-orders__empty h2 {
+  margin: 0;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: #24211e;
+}
+
+.account-orders__cta,
+.account-wishlist__cta {
+  margin-top: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid #24211e;
+  color: #24211e;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.account-wishlist__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.account-wishlist__item {
+  position: relative;
+}
+
+.account-wishlist__remove {
+  margin-top: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #947c69;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.account-wishlist__remove:hover {
+  color: #24211e;
+}
+
+.account-order-details__title {
+  margin: 8px 0 16px;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 400;
+}
+
+.account-order-details__back {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #24211e;
+  color: #24211e;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.account-loading {
+  padding: 60px 0;
+  text-align: center;
+  color: #75695f;
+}
+
+@media (max-width: 1024px) {
+  .account__container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .account-sidebar {
+    position: static;
+  }
+
+  .account-dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-wishlist__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .account {
+    padding: 30px 0 60px;
+  }
+
+  .account__container {
+    width: auto;
+    margin: 0 16px;
+  }
+
+  .account-wishlist__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}

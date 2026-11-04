@@ -1,0 +1,237 @@
+/* =========================================
+   ABAYA — SHOP PRODUCT CARD
+   Simplified product card for shop grid view
+========================================= */
+
+.shop-product-card {
+  position: relative;
+  min-width: 0;
+}
+
+.shop-product-card__image-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.shop-product-card__image-container {
+  position: relative;
+  overflow: hidden;
+  background: #e6d7c5;
+  aspect-ratio: 3 / 4;
+}
+
+.shop-product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s ease, opacity 0.22s ease;
+}
+
+.shop-product-card:hover .shop-product-card__image {
+  transform: scale(1.06);
+}
+
+.shop-product-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 7px 10px;
+  background: #fbf8f3;
+  color: #24211e;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px -18px rgba(36, 33, 30, 0.45);
+}
+
+.shop-product-card__overlay {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  background: rgba(36, 33, 30, 0.88);
+  color: #fbf8f3;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+}
+
+.shop-product-card:hover .shop-product-card__overlay,
+.shop-product-card__image-link:focus-visible .shop-product-card__overlay {
+  transform: translateY(0);
+}
+
+.shop-product-card__info {
+  padding-top: 16px;
+}
+
+.shop-product-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #947c69;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.shop-product-card__divider {
+  opacity: 0.5;
+}
+
+.shop-product-card__sizes {
+  font-variant-numeric: tabular-nums;
+}
+
+.shop-product-card__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.shop-product-card__name-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.shop-product-card__name-link:hover .shop-product-card__name {
+  color: #947c69;
+}
+
+.shop-product-card__name {
+  margin: 0;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(20px, 1.9vw, 28px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.shop-product-card__price {
+  flex-shrink: 0;
+  color: #24211e;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.shop-product-card__color-swatches {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.shop-product-card__color-swatch {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin-right: -4px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(36, 33, 30, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.shop-product-card__color-swatch:hover,
+.shop-product-card__color-swatch:focus-visible {
+  transform: translateY(-2px);
+}
+
+.shop-product-card__color-swatch.is-active {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 2px #fbf8f3, 0 0 0 4px #947c69;
+}
+
+.shop-product-card__color-count {
+  margin-left: 10px;
+  color: #947c69;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* List layout */
+.shop-product-card--list {
+  display: flex;
+  gap: 24px;
+}
+
+.shop-product-card--list .shop-product-card__image-container {
+  flex: 0 0 200px;
+  aspect-ratio: 3/4;
+}
+
+.shop-product-card--list .shop-product-card__info {
+  flex: 1;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .shop-product-card__badge {
+    top: 8px;
+    left: 8px;
+    padding: 6px 8px;
+    font-size: 7px;
+  }
+
+  .shop-product-card__overlay {
+    padding: 12px;
+    font-size: 8px;
+  }
+
+  .shop-product-card__meta {
+    font-size: 8px;
+  }
+
+  .shop-product-card__name {
+    font-size: clamp(18px, 5vw, 22px);
+  }
+
+  .shop-product-card__price {
+    font-size: 11px;
+  }
+
+  .shop-product-card__color-swatch {
+    width: 12px;
+    height: 12px;
+  }
+
+  .shop-product-card__color-count {
+    font-size: 8px;
+  }
+}
+
+/* Accessibility */
+.shop-product-card:focus-within {
+  outline: 2px solid #947c69;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-product-card__image,
+  .shop-product-card__color-swatch,
+  .shop-product-card__overlay {
+    transition: none;
+    transform: none;
+  }
+}
