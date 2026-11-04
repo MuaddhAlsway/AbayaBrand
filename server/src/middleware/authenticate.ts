@@ -12,7 +12,6 @@ export function requireAuth(req: Request, _res: Response, next: NextFunction): v
     next(unauthorized("Authentication required"));
     return;
   }
-  (req as Request & { auth?: unknown }).auth = auth;
   next();
 }
 
