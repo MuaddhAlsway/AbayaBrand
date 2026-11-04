@@ -158,4 +158,26 @@ npx tsc -p tsconfig.json --noEmit
 
 ## 📸 Screenshots
 
-Additional page screenshots are available in [`client/public/AbayaImage`](client/public/AbayaImage), including Home, Shop, Product, Our Story, and HeroAbaya imagery.
+### 🏠 Home
+
+![Home page](client/public/AbayaImage/HomePage.png)
+
+### 🛒 Shop
+
+![Shop page](client/public/AbayaImage/ShopPage.png)
+
+### ✨ HeroAbaya
+
+![HeroAbaya](client/public/AbayaImage/HeroAbaya.png)
+
+### 🧥 Product page
+
+![Product page](client/public/AbayaImage/ProductPage.png)
+
+### 📖 Our Story
+
+![Our Story page](client/public/AbayaImage/OurStoryPage.png)
+
+## 👨‍💻 Developer
+
+Developed by **E.Muaddh_ALSway**
