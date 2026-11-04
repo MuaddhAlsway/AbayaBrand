@@ -29,7 +29,7 @@ import Wishlist from "./pages/Wishlist";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./layouts/AdminLayout";
-import AdminDashboard, { AdminProducts } from "./pages/AdminDashboard";
+import AdminDashboard, { AdminModule, AdminProducts } from "./pages/AdminDashboard";
 
 function StoreLayout() {
   return (
@@ -81,10 +81,10 @@ export default function App() {
         <Route path="admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
           <Route index element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
-          <Route path="inventory" element={<AdminDashboard />} />
-          <Route path="orders" element={<AdminDashboard />} />
-          <Route path="customers" element={<AdminDashboard />} />
-          <Route path="settings" element={<AdminDashboard />} />
+          <Route path="inventory" element={<AdminModule title="Inventory" kicker="ABAYA / OPERATIONS" description="Track stock levels, variants, and low-stock products from one workspace." />} />
+          <Route path="orders" element={<AdminModule title="Orders" kicker="ABAYA / FULFILLMENT" description="Review customer orders, payment status, and fulfillment progress." />} />
+          <Route path="customers" element={<AdminModule title="Customers" kicker="ABAYA / RELATIONSHIPS" description="Manage customer profiles and account activity synced from Clerk and MongoDB." />} />
+          <Route path="settings" element={<AdminModule title="Settings" kicker="ABAYA / CONFIGURATION" description="Configure store operations, shipping, and administrator preferences." />} />
         </Route>
       </Routes>
     </BrowserRouter>
