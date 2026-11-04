@@ -18,7 +18,7 @@ type CollectionFilter = "all" | ProductCollection;
 type SortOption = "featured" | "price-low" | "price-high" | "name";
 type GridColumns = 2 | 3;
 
-const productsApiUrl = (import.meta.env.VITE_API_URL ?? "http://localhost:5000/api").replace(/\/$/, "");
+const productsApiUrl = (import.meta.env.PROD ? "/api" : (import.meta.env.VITE_API_URL ?? "http://localhost:5000/api")).replace(/\/$/, "");
 
 const collections: {
   label: string;
