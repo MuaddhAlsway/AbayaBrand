@@ -7,6 +7,7 @@ import { WishlistProvider } from './context/WishlistContext'
 import { ClerkProvider } from '@clerk/clerk-react'
 
 import { clerkPublishableKey, hasClerk } from "./config/clerk";
+import CustomerSessionSync from "./components/auth/CustomerSessionSync";
 
 const app = (
   <CartProvider>
@@ -19,7 +20,7 @@ const app = (
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {hasClerk ? (
-      <ClerkProvider publishableKey={clerkPublishableKey}>{app}</ClerkProvider>
+      <ClerkProvider publishableKey={clerkPublishableKey}><CustomerSessionSync />{app}</ClerkProvider>
     ) : (
       app
     )}

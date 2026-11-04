@@ -28,6 +28,8 @@ import OurStory from "./pages/OurStory";
 import Wishlist from "./pages/Wishlist";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
+import AdminLayout from "./layouts/AdminLayout";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function StoreLayout() {
   return (
@@ -49,8 +51,8 @@ export default function App() {
         <Route element={<StoreLayout />}>
           <Route index element={<Home />} />
           <Route path="shop" element={<Shop />} />
-          <Route path="sign-in" element={<SignIn />} />
-          <Route path="sign-up" element={<SignUp />} />
+          <Route path="sign-in/*" element={<SignIn />} />
+          <Route path="sign-up/*" element={<SignUp />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="order-confirmation/:orderId" element={<OrderConfirmation />} />
           <Route
@@ -75,6 +77,9 @@ export default function App() {
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route path="admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+          <Route index element={<AdminDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -9,6 +9,7 @@ export const env = {
   clientUrl: process.env.CLIENT_URL ?? "http://localhost:5173",
   clerkSecretKey: process.env.CLERK_SECRET_KEY ?? "",
   clerkPublishableKey: process.env.CLERK_PUBLISHABLE_KEY ?? "",
+  adminEmailAllowlist: (process.env.ADMIN_EMAIL_ALLOWLIST ?? "").split(",").map((email) => email.trim().toLowerCase()).filter(Boolean),
 };
 
 export function validateEnv(): void {
