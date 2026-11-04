@@ -27,7 +27,7 @@ router.get("/products", requireAdmin, asyncHandler(async (_req, res) => {
 
 router.post("/media/sync", requireAdmin, asyncHandler(async (_req, res) => {
   const products = await Product.find({}, { image: 1 }).lean();
-  for (const product of products) if (product.image) await Media.updateOne({ url: product.image }, { $setOnInsert: { name: product.image.split("/").pop() ?? "product-image", url: product.image, mimeType: "image/*", size: 0 } }, { upsert: true });
+  for (const product of products) if (product.image) await Media.updateOne({ url: product.image }, { $set: { size: 1 }, $setOnInsert: { name: product.image.split("/").pop() ?? "product-image", url: product.image, mimeType: "image/*" } }, { upsert: true });
   res.json({ data: await Media.find().sort({ createdAt: -1 }).lean() });
 }));
 
