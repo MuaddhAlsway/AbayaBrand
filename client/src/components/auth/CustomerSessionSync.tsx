@@ -1,7 +1,7 @@
 import { useAuth } from "@clerk/clerk-react";
 import { useEffect } from "react";
 
-const api = (import.meta.env.VITE_API_URL ?? "http://localhost:5000/api").replace(/\/$/, "");
+const api = (import.meta.env.VITE_API_URL ?? "https://abayabrand.onrender.com/api").replace(/\/$/, "");
 
 export default function CustomerSessionSync() {
   const { isLoaded, isSignedIn, getToken } = useAuth();

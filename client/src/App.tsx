@@ -30,6 +30,7 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminModulePage from "./pages/AdminModulePage";
 
 function StoreLayout() {
   return (
@@ -80,6 +81,11 @@ export default function App() {
         </Route>
         <Route path="admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
           <Route index element={<AdminDashboard />} />
+          <Route path="products" element={<AdminModulePage />} />
+          <Route path="inventory" element={<AdminModulePage />} />
+          <Route path="orders" element={<AdminModulePage />} />
+          <Route path="customers" element={<AdminModulePage />} />
+          <Route path="settings" element={<AdminModulePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
