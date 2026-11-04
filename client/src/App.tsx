@@ -29,8 +29,7 @@ import Wishlist from "./pages/Wishlist";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./layouts/AdminLayout";
-import AdminDashboard from "./pages/AdminDashboard";
-import AdminModulePage from "./pages/AdminModulePage";
+import AdminDashboard, { AdminProducts } from "./pages/AdminDashboard";
 
 function StoreLayout() {
   return (
@@ -81,11 +80,11 @@ export default function App() {
         </Route>
         <Route path="admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
           <Route index element={<AdminDashboard />} />
-          <Route path="products" element={<AdminModulePage />} />
-          <Route path="inventory" element={<AdminModulePage />} />
-          <Route path="orders" element={<AdminModulePage />} />
-          <Route path="customers" element={<AdminModulePage />} />
-          <Route path="settings" element={<AdminModulePage />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="inventory" element={<AdminDashboard />} />
+          <Route path="orders" element={<AdminDashboard />} />
+          <Route path="customers" element={<AdminDashboard />} />
+          <Route path="settings" element={<AdminDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

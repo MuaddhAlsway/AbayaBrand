@@ -2,6 +2,7 @@ import { clerkClient, clerkMiddleware, getAuth } from "@clerk/express";
 import { Request, Response, NextFunction } from "express";
 import { forbidden, unauthorized } from "../utils/ApiError";
 import { env } from "../config/env";
+import { Admin } from "../modules/admin/admin.model";
 
 export const clerkAuthMiddleware = clerkMiddleware();
 
@@ -21,11 +22,19 @@ export function getAuthUserId(req: Request): string | null {
 }
 
 export async function requireAdmin(req: Request, _res: Response, next: NextFunction): Promise<void> {
-  const userId = getAuthUserId(req);
-  if (!userId) { next(unauthorized("Authentication required")); return; }
-  if (env.adminEmailAllowlist.length === 0) { next(forbidden("Admin access is not configured")); return; }
-  const user = await clerkClient.users.getUser(userId);
-  const emails = user.emailAddresses.map((email) => email.emailAddress.toLowerCase());
-  if (!emails.some((email) => env.adminEmailAllowlist.includes(email))) { next(forbidden("Administrator access required")); return; }
-  next();
+  try {
+    const userId = getAuthUserId(req);
+    if (!userId) { next(unauthorized("Authentication required")); return; }
+    const user = await clerkClient.users.getUser(userId);
+    const emails = user.emailAddresses.map((email) => email.emailAddress.toLowerCase());
+    const admin = await Admin.findOne({ email: { $in: emails }, active: true });
+    if (!admin) { next(forbidden("Administrator access required")); return; }
+    if (admin.clerkUserId !== userId) {
+      admin.clerkUserId = userId;
+      await admin.save();
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
 }
