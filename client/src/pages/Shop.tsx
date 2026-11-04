@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { products } from "../data/products";
+import { getProducts } from "../services/productService";
 import type { ProductCategory, ProductCollection } from "../types/product";
 import ShopProductCard from "../components/products/ShopProductCard";
 import "../styles/shop.css";
@@ -42,6 +43,8 @@ const sortOptions: {
 
 
 export default function Shop() {
+  const [catalog, setCatalog] = useState(products);
+  const [catalogStatus, setCatalogStatus] = useState<"loading" | "ready" | "fallback">("loading");
   const [searchParams, setSearchParams] = useSearchParams();
   const collectionParam = searchParams.get("collection")?.toLowerCase();
 
@@ -66,6 +69,22 @@ export default function Shop() {
     Math.ceil(Math.max(...products.map((p) => p.price)) / 100) * 100
   );
 
+  useEffect(() => {
+    const controller = new AbortController();
+    getProducts(controller.signal)
+      .then((remoteProducts) => {
+        if (remoteProducts.length === 0) throw new Error("MongoDB returned no products");
+        setCatalog(remoteProducts);
+        setMaxPrice(Math.ceil(Math.max(...remoteProducts.map((p) => p.price)) / 100) * 100);
+        setCatalogStatus("ready");
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setCatalogStatus("fallback");
+      });
+    return () => controller.abort();
+  }, []);
+
   // Keep the search input in sync when the URL search param changes
   // (e.g. navbar search), without clobbering in-page typing or
   // collection tab switches.
@@ -80,24 +99,24 @@ export default function Shop() {
   // Get unique sizes and colors from products
   const allSizes = useMemo(() => {
     const sizes = new Set<string>();
-    products.forEach(product => {
+    catalog.forEach(product => {
       product.sizes.forEach(size => sizes.add(size));
     });
     return Array.from(sizes).sort((a, b) => parseInt(a) - parseInt(b));
-  }, []);
+  }, [catalog]);
 
   const allColors = useMemo(() => {
     const colors = new Set<string>();
-    products.forEach(product => {
+    catalog.forEach(product => {
       product.colors.forEach(color => colors.add(color));
     });
     return Array.from(colors);
-  }, []);
+  }, [catalog]);
 
   const filteredProducts = useMemo(() => {
     const query = search.trim().toLowerCase();
     
-    const result = products.filter((product) => {
+    const result = catalog.filter((product) => {
       // Collection filter (URL-driven). "limited" is not a category tab
       // but is used by homepage links, so filter by badge in that case.
       const matchesCollection =
@@ -151,7 +170,7 @@ export default function Shop() {
           return 0;
         });
     }
-  }, [activeCollection, collectionParam, search, sort, selectedCategories, selectedSizes, selectedColors, minPrice, maxPrice]);
+  }, [activeCollection, collectionParam, search, sort, selectedCategories, selectedSizes, selectedColors, minPrice, maxPrice, catalog]);
 
   const handleCollectionChange = (collection: CollectionFilter) => {
     const nextParams = new URLSearchParams(searchParams);
@@ -208,7 +227,7 @@ export default function Shop() {
     setSelectedSizes(new Set());
     setSelectedColors(new Set());
     setMinPrice(0);
-    setMaxPrice(Math.ceil(Math.max(...products.map((p) => p.price)) / 100) * 100);
+    setMaxPrice(Math.ceil(Math.max(...catalog.map((p) => p.price)) / 100) * 100);
     setSort("featured");
     setSearchParams(new URLSearchParams());
   };
@@ -217,7 +236,7 @@ export default function Shop() {
     selectedSizes.size > 0 || 
     selectedColors.size > 0 || 
     minPrice > 0 || 
-    maxPrice < Math.max(...products.map(p => p.price));
+    maxPrice < Math.max(...catalog.map(p => p.price));
 
   return (
     <main className="shop">
@@ -285,7 +304,7 @@ export default function Shop() {
           <div className="shop__toolbar">
             <div className="shop__toolbar-left">
               <span className="shop__count">
-                {filteredProducts.length} PIECES
+                {catalogStatus === "loading" ? "LOADING" : `${filteredProducts.length} PIECES`}
               </span>
 
               <button
@@ -452,7 +471,7 @@ export default function Shop() {
                           id="max-price"
                           type="number"
                           min={minPrice}
-                          max={Math.max(...products.map(p => p.price))}
+                          max={Math.max(...catalog.map(p => p.price))}
                           value={maxPrice}
                           onChange={(e) => setMaxPrice(parseInt(e.target.value) || 1000)}
                         />
@@ -463,14 +482,14 @@ export default function Shop() {
                     <input
                       type="range"
                       min="0"
-                      max={Math.max(...products.map(p => p.price))}
+                      max={Math.max(...catalog.map(p => p.price))}
                       value={minPrice}
                       onChange={(e) => setMinPrice(parseInt(e.target.value))}
                     />
                     <input
                       type="range"
                       min="0"
-                      max={Math.max(...products.map(p => p.price))}
+                      max={Math.max(...catalog.map(p => p.price))}
                       value={maxPrice}
                       onChange={(e) => setMaxPrice(parseInt(e.target.value))}
                     />
