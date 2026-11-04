@@ -12,6 +12,7 @@ import {
 import { products } from "../data/products";
 import type { ProductCategory, ProductCollection } from "../types/product";
 import ShopProductCard from "../components/products/ShopProductCard";
+import { assetUrl } from "../utils/assetUrl";
 import "../styles/Shop.css";
 
 type CollectionFilter = "all" | ProductCollection;
@@ -80,8 +81,9 @@ export default function Shop() {
       .then((payload) => payload.data ?? [])
       .then((remoteProducts) => {
         if (remoteProducts.length === 0) throw new Error("MongoDB returned no products");
-        setCatalog(remoteProducts);
-        setMaxPrice(Math.ceil(Math.max(...remoteProducts.map((p) => p.price)) / 100) * 100);
+        const normalizedProducts = remoteProducts.map((product) => ({ ...product, image: assetUrl(product.image), images: product.images?.map(assetUrl) }));
+        setCatalog(normalizedProducts);
+        setMaxPrice(Math.ceil(Math.max(...normalizedProducts.map((p) => p.price)) / 100) * 100);
         setCatalogStatus("ready");
       })
       .catch((error: unknown) => {
