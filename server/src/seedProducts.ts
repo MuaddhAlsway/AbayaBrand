@@ -1,7 +1,6 @@
-import { connectDatabase, disconnectDatabase } from "./config/database";
 import { Product, type IProduct } from "./modules/products/product.model";
 
-const products: Array<Pick<IProduct, "slug" | "name" | "category" | "price" | "image" | "images" | "badge" | "colors" | "sizes" | "isFeatured">> = [
+export const products: Array<Pick<IProduct, "slug" | "name" | "category" | "price" | "image" | "images" | "badge" | "colors" | "sizes" | "isFeatured">> = [
   { slug: "the-essential-abaya", name: "The Essential Abaya", category: "Everyday", price: 349, image: "/products/TheEssentialAbayaColorOne.png", images: ["/products/TheEssentialAbayaColorOne.png", "/products/TheEssentialAbayaColorTwo.png"], badge: "BESTSELLER", colors: ["#24211e", "#51483f"], sizes: ["52", "54", "56", "58", "60"], isFeatured: true },
   { slug: "the-emerald-abaya", name: "The Emerald Abaya", category: "Signature", price: 499, image: "/products/TheEmeraldAbayaColorOne.png", images: ["/products/TheEmeraldAbayaColorOne.png", "/products/TheEmeraldAbayaColorTwo.png"], badge: "NEW", colors: ["#183e34", "#24211e"], sizes: ["52", "54", "56", "58"], isFeatured: true },
   { slug: "the-ivory-abaya", name: "The Ivory Abaya", category: "Occasion", price: 549, image: "/products/TheIvoryAbayaColorOne.png", images: ["/products/TheIvoryAbayaColorOne.png", "/products/TheIvoryAbayaColorTwo.png"], badge: "LIMITED", colors: ["#e6d7c5", "#c4ac94"], sizes: ["52", "54", "56", "58"], isFeatured: true },
@@ -16,11 +15,15 @@ const products: Array<Pick<IProduct, "slug" | "name" | "category" | "price" | "i
   { slug: "the-heritage-abaya", name: "The Heritage Abaya", category: "Classic", price: 489, image: "/products/TheSignatureAbayaColorOne.png", images: ["/products/TheSignatureAbayaColorOne.png"], colors: ["#24211e"], sizes: ["52", "54", "56", "58", "60"], isFeatured: false },
 ];
 
-async function seed() {
-  await connectDatabase();
+export async function seedProducts() {
   const result = await Product.bulkWrite(products.map((product) => ({ updateOne: { filter: { slug: product.slug }, update: { $set: product }, upsert: true } })));
   console.log(`Seeded ${products.length} products: ${result.upsertedCount} inserted, ${result.modifiedCount} updated.`);
-  await disconnectDatabase();
 }
 
-seed().catch(async (error) => { console.error(error); await disconnectDatabase(); process.exitCode = 1; });
+if (require.main === module) {
+  import("./config/database").then(async ({ connectDatabase, disconnectDatabase }) => {
+    await connectDatabase();
+    await seedProducts();
+    await disconnectDatabase();
+  }).catch((error) => { console.error(error); process.exitCode = 1; });
+}

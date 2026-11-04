@@ -12,7 +12,7 @@ export default function SignIn() {
     <main className="auth">
       <div className="auth__container">
         <div className="auth__visual">
-          <img src={heroImage} alt="ABAYA editorial" loading="lazy" />
+          <img src={heroImage} alt="ABAYA editorial" loading="lazy" decoding="async" />
           <div className="auth__visual-overlay">
             <span className="auth__brand">ABAYA</span>
             <span className="auth__brand-arabic" lang="ar">

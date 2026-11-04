@@ -17,7 +17,7 @@ export default function CheckoutSummary() {
           return (
             <li key={item.id} className="checkout-summary__item">
               <div className="checkout-summary__thumb">
-                <img src={product.image} alt={product.name} />
+                <img src={product.image} alt={product.name} loading="lazy" decoding="async" />
               </div>
               <div className="checkout-summary__info">
                 <p className="checkout-summary__name">{product.name}</p>

@@ -74,6 +74,8 @@ export default function ProductGallery({
             src={gallery[safeIndex]}
             alt={`${product.name} — view ${safeIndex + 1} of ${gallery.length}`}
             className="product-gallery__main-image"
+            loading="eager"
+            decoding="async"
           />
           <span className="product-gallery__zoom" aria-hidden="true">
             <ZoomIn size={18} />
@@ -95,7 +97,7 @@ export default function ProductGallery({
               aria-label={`Show image ${index + 1} of ${gallery.length}`}
               aria-pressed={index === safeIndex}
             >
-              <img src={src} alt="" aria-hidden="true" />
+              <img src={src} alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </button>
           ))}
         </div>
@@ -142,6 +144,8 @@ export default function ProductGallery({
             src={gallery[safeIndex]}
             alt={`${product.name} — view ${safeIndex + 1} of ${gallery.length}`}
             className="product-gallery__viewer-image"
+            loading="lazy"
+            decoding="async"
           />
           <p className="product-gallery__viewer-count" aria-live="polite">
             {safeIndex + 1} / {gallery.length}

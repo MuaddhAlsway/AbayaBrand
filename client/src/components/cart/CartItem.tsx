@@ -41,7 +41,7 @@ export default function CartItem({ item }: CartItemProps) {
         aria-label={`View ${product.name}`}
       >
         <div className="cart-item__image">
-          <img src={product.image} alt={product.name} loading="lazy" />
+          <img src={product.image} alt={product.name} loading="lazy" decoding="async" />
         </div>
       </Link>
 

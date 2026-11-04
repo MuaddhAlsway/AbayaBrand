@@ -93,7 +93,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
               src={gallery[safeNextImage]}
               alt=""
               aria-hidden="true"
-              loading="eager"
+              loading="lazy"
               decoding="async"
             />
           )}
