@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 
 import { products } from "../data/products";
-import { getProducts } from "../services/productService";
 import type { ProductCategory, ProductCollection } from "../types/product";
 import ShopProductCard from "../components/products/ShopProductCard";
 import "../styles/shop.css";
@@ -18,6 +17,8 @@ import "../styles/shop.css";
 type CollectionFilter = "all" | ProductCollection;
 type SortOption = "featured" | "price-low" | "price-high" | "name";
 type GridColumns = 2 | 3;
+
+const productsApiUrl = (import.meta.env.VITE_API_URL ?? "http://localhost:5000/api").replace(/\/$/, "");
 
 const collections: {
   label: string;
@@ -71,7 +72,12 @@ export default function Shop() {
 
   useEffect(() => {
     const controller = new AbortController();
-    getProducts(controller.signal)
+    fetch(`${productsApiUrl}/products`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Products request failed: ${response.status}`);
+        return response.json() as Promise<{ data?: typeof products }>;
+      })
+      .then((payload) => payload.data ?? [])
       .then((remoteProducts) => {
         if (remoteProducts.length === 0) throw new Error("MongoDB returned no products");
         setCatalog(remoteProducts);
