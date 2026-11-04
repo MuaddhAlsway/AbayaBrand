@@ -1,10 +1,10 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { BarChart3, Box, LayoutDashboard, LogOut, Menu, Settings, ShoppingBag, Users, X } from "lucide-react";
+import { BarChart3, Box, Image, LayoutDashboard, LogOut, Menu, Settings, ShoppingBag, Users, X } from "lucide-react";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import { useState } from "react";
 import "../styles/admin.css";
 
-const links = [{ to: "/admin", label: "Overview", icon: LayoutDashboard, end: true }, { to: "/admin/products", label: "Products", icon: Box }, { to: "/admin/inventory", label: "Inventory", icon: ShoppingBag }, { to: "/admin/orders", label: "Orders", icon: BarChart3 }, { to: "/admin/customers", label: "Customers", icon: Users }, { to: "/admin/settings", label: "Settings", icon: Settings }];
+const links = [{ to: "/admin", label: "Overview", icon: LayoutDashboard, end: true }, { to: "/admin/products", label: "Products", icon: Box }, { to: "/admin/media", label: "Media", icon: Image }, { to: "/admin/inventory", label: "Inventory", icon: ShoppingBag }, { to: "/admin/orders", label: "Orders", icon: BarChart3 }, { to: "/admin/customers", label: "Customers", icon: Users }, { to: "/admin/settings", label: "Settings", icon: Settings }];
 
 export default function AdminLayout() {
   const [open, setOpen] = useState(false); const { user } = useUser(); const { signOut } = useClerk(); const navigate = useNavigate();

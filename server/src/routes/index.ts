@@ -14,6 +14,7 @@ import shippingRoutes from "../modules/shipping/shipping.routes";
 import reviewRoutes from "../modules/reviews/review.routes";
 import newsletterRoutes from "../modules/newsletter/newsletter.routes";
 import adminRoutes from "../modules/admin/admin.routes";
+import mediaRoutes from "../modules/media/media.routes";
 
 const router = Router();
 
@@ -32,5 +33,6 @@ router.use("/shipping", shippingRoutes);
 router.use("/reviews", reviewRoutes);
 router.use("/newsletter", newsletterRoutes);
 router.use("/admin", adminRoutes);
+router.use("/media", mediaRoutes);
 
 export default router;
