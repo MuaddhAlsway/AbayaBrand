@@ -12,7 +12,7 @@ import {
 import { products } from "../data/products";
 import type { ProductCategory, ProductCollection } from "../types/product";
 import ShopProductCard from "../components/products/ShopProductCard";
-import "../styles/shop.css";
+import "../styles/Shop.css";
 
 type CollectionFilter = "all" | ProductCollection;
 type SortOption = "featured" | "price-low" | "price-high" | "name";
